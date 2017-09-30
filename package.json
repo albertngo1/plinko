@@ -16,5 +16,9 @@
     "babel-preset-es2015": "^6.24.1",
     "webpack": "^3.5.4",
     "webpack-dev-server": "^2.7.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "matter-js": "^0.13.0"
   }
 }
