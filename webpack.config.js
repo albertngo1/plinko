@@ -1,6 +1,6 @@
 module.exports = {
     context: __dirname,
-    entry: "./src/index.js",
+    entry: "./src/sketch.js",
     output: {
         path: __dirname + "/dist",
         publicPath: "/dist",
