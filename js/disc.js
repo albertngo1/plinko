@@ -3,7 +3,7 @@ class Disc {
   constructor(x, y, r) {
     const options = {
       restitution: 1,
-      friction: .2,
+      friction: 0,
       density: .5
     }
     this.body = Bodies.circle(x, y, r, options);

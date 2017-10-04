@@ -14,16 +14,16 @@ function collision(event) {
 function createBounds() {
   const bottomSideBound = new Boundary(width / 2, height - 45, width, 50, 'bottomBound');
   const leftSideBound = new Boundary(0, height / 2, 1, height, 'leftBound');
-  const rightSideBound = new Boundary(width, height / 2, 1, 'rightBound');
+  const rightSideBound = new Boundary(width, height / 2, 1, height, 'rightBound');
 }
 
 function newPillars(spacing) {
-  for (let i=1; i < cols; i++) {
+  for (let i=2; i < cols; i++) {
     let x = i * spacing - spacing / 2;
     let h = 70;
     let w = 10;
     let y = height - 1.5*h;
-    let b = new Boundary(x, y, w, h);
+    let b = new Boundary(x, y, w, h, "rectangle");
     pillars.push(b);
   }
 }
@@ -31,19 +31,21 @@ function newPillars(spacing) {
 function edgePillars(spacing) {
   let x = 1 * spacing - spacing;
   let h = 70;
-  let w = 70;
+  let w = 30;
   let y = height - 1.5*h;
   let b = new Boundary(x, y, w, h);
   pillars.push(b);
 
-  x = (cols+1) * spacing - 50;
+  x = (cols+1) * spacing - 2 * w;
   b = new Boundary(x, y, w, h);
   pillars.push(b);
 }
 
 function newDisc() {
-  const d = new Disc(320, 0, circleRadius);
-  discs.push(d);
+  if (discs.length < 1) {
+    const d = new Disc(img.x, img.y, circleRadius);
+    discs.push(d);
+  }
 }
 
 function createArrow() {
@@ -93,4 +95,25 @@ function createPegs(spacing) {
       pegs.push(p);
     }
   }
+}
+
+function keyPressed() {
+  if (keyCode == 32) {
+    newDisc();
+  }
+}
+
+function drawTitle() {
+  textSize(100);
+  textFont(font);
+  textStyle(BOLD);
+  stroke(0);
+  text("P",40, 70);
+  text("I",120, 70);
+  ellipse(121, 45, 15);
+  text("L",90, 70);
+  text("N",145, 70);
+  text("O",237, 70);
+  text("K",195, 70);
+  fill(219);
 }

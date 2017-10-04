@@ -5,7 +5,7 @@ class Boundary {
       isStatic: true
     }
     this.body = Bodies.rectangle(x, y, w, h, options);
-    this.body.label = label;
+    this.body.label = label
     this.w = w;
     this.h = h;
     World.add(world, this.body)

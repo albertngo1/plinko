@@ -5,13 +5,14 @@ const Events = Matter.Events;
 
 let engine;
 let world;
+let font;
 let discs = [];
 let pegs = [];
 let pillars = [];
-const rows = 12;
+const rows = 14;
 const cols = 12;
-const topBuffer = 50;
-const circleRadius = 10;
+const topBuffer = 60;
+const circleRadius = 15;
 const pegRadius = 2;
 
 let img;
@@ -25,12 +26,12 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(640, 550);
+  createCanvas(640, 600);
+  font = loadFont("../assets/fonts/pricedown.ttf")
   const spacing = width / cols;
   createArrow();
   engine = Engine.create();
   world = engine.world;
-  newDisc();
 
   Events.on(engine, 'collisionStart', collision)
   createPegs(spacing);
@@ -40,7 +41,9 @@ function setup() {
 }
 
 function draw() {
-  background(51);
+  background(226, 214, 214);
+  drawTitle();
+  keyPressed();
   arrowMovement();
   Engine.update(engine, 16.667);
 
