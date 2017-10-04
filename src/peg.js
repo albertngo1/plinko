@@ -1,19 +1,16 @@
-class Disc {
-
+class Peg {
   constructor(x, y, r) {
     const options = {
-      restitution: 1,
-      friction: .2,
-      density: .5
+      isStatic: true
     }
     this.body = Bodies.circle(x, y, r, options);
-    this.body.label = "disc";
+    this.body.label = "peg";
     this.r = r;
-    World.add(world, this.body)
+    World.add(world, this.body);
   }
 
   show() {
-    fill(255);
+    fill(251, 9, 9);
     stroke(255);
     push();
     const pos = this.body.position;
@@ -21,11 +18,4 @@ class Disc {
     ellipse(0, 0, this.r * 2);
     pop();
   }
-
-  offScreen() {
-    let x = this.body.position.x;
-
-    return (x < -50 || x > width + 50);
-  }
-
 }
