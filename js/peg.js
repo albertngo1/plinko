@@ -10,7 +10,7 @@ class Peg {
   }
 
   show() {
-    fill(251, 9, 9);
+    fill("#45bf36");
     stroke(255);
     push();
     const pos = this.body.position;

@@ -13,12 +13,13 @@ class Disc {
   }
 
   show() {
-    fill(255);
-    stroke(255);
+    fill(23, 232, 147);
+    stroke(0);
     push();
     const pos = this.body.position;
     translate(pos.x, pos.y);
-    ellipse(0, 0, this.r * 2);
+    // ellipse(0, 0, this.r * 2);
+    image(dollarSignImg, 0, 0, 28, 28)
     pop();
   }
 

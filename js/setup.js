@@ -1,13 +1,15 @@
 function collision(event) {
   let pairs = event.pairs[0];
-  if ((pairs.bodyA.label == 'disc' && pairs.bodyB.label == 'peg') ||
+  if (!mute) {
+    if ((pairs.bodyA.label == 'disc' && pairs.bodyB.label == 'peg') ||
     pairs.bodyA.label == 'peg' && pairs.bodyB.label == 'disc') {
-    dingSound.play();
-  }
-  if (((pairs.bodyA.label == 'disc' && pairs.bodyB.label == 'bottomBound') ||
+      dingSound.play();
+    }
+    if (((pairs.bodyA.label == 'disc' && pairs.bodyB.label == 'bottomBound') ||
     (pairs.bodyA.label == 'bottomBound' && pairs.bodyB.label == 'disc')) && cashCount == 0) {
-    cashSound.play();
-    cashCount += 1;
+      cashSound.play();
+      cashCount += 1;
+    }
   }
 }
 
@@ -43,26 +45,26 @@ function edgePillars(spacing) {
 
 function newDisc() {
   if (discs.length < 1) {
-    const d = new Disc(img.x, img.y, circleRadius);
+    const d = new Disc(input.x, input.y, circleRadius);
     discs.push(d);
   }
 }
 
 function createArrow() {
-  img = loadImage('./assets/angle-arrow-down.svg');
+  input = loadImage('./assets/angle-arrow-down.svg');
   imageMode(CENTER);
-  img.x = width/2;
-  img.y = 10;
+  input.x = width/2;
+  input.y = 10;
 }
 
 function arrowMovement() {
   if (keyIsDown(LEFT_ARROW)) {
     if (!arrowOffScreen(LEFT_ARROW)) {
-      img.x -= 5;
+      input.x -= 5;
     }
   } else if (keyIsDown(RIGHT_ARROW)) {
     if (!arrowOffScreen(RIGHT_ARROW)) {
-      img.x += 5;
+      input.x += 5;
     }
   }
 }
@@ -70,8 +72,8 @@ function arrowMovement() {
 function arrowOffScreen(key) {
   let leftX;
   let rightX;
-  leftX = img.x - img.width/(2 * cols);
-  rightX = img.x + img.width/(2 * cols);
+  leftX = input.x - input.width/(2 * cols);
+  rightX = input.x + input.width/(2 * cols);
   if (leftX < 0 && key == LEFT_ARROW ) {
     return true;
   } else if (rightX > width && key == RIGHT_ARROW) {
@@ -116,4 +118,14 @@ function drawTitle() {
   text("O",237, 70);
   text("K",195, 70);
   fill(219);
+}
+
+function mouseClicked() {
+  if (((mouseX < width && mouseX > width - 30) && (mouseY > 0 && mouseY < 30)) && !mute) {
+    mute = true;
+    backgroundSong.pause();
+  } else if (mute) {
+    mute = false;
+    backgroundSong.play();
+  }
 }
