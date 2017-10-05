@@ -41,10 +41,10 @@ function preload() {
 
 function setup() {
   createCanvas(640, 600);
-  font = loadFont("../assets/fonts/pricedown.ttf");
-  dollarSignImg = loadImage('../assets/images/dollar-sign-circle.svg');
-  mutedSound = loadImage('../assets/images/sound_off.svg');
-  unmutedSound = loadImage('../assets/images/sound_on.svg');
+  font = loadFont("./assets/fonts/pricedown.ttf");
+  dollarSignImg = loadImage('./assets/images/dollar-sign-circle.svg');
+  mutedSound = loadImage('./assets/images/sound_off.svg');
+  unmutedSound = loadImage('./assets/images/sound_on.svg');
   createArrow();
   const spacing = width / cols;
   engine = Engine.create();
