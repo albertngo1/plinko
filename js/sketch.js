@@ -30,7 +30,7 @@ let gameOver = false;
 const rows = 14;
 const cols = 12;
 const topBuffer = 60;
-const circleRadius = 2;
+const circleRadius = 15;
 const pegRadius = 2;
 
 function preload() {
@@ -55,7 +55,7 @@ function setup() {
   createBounds();
   newPillars(spacing);
   edgePillars(spacing);
-  // backgroundSong.loop();
+  backgroundSong.loop();
 }
 
 function draw() {
