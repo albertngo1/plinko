@@ -166,7 +166,6 @@ function mouseClicked() {
 function renderTitle() {
   textAlign(RIGHT);
   textSize(100);
-  textFont(font);
   textStyle(BOLD);
   fill(255);
   stroke(0);

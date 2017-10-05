@@ -59,6 +59,7 @@ function setup() {
 }
 
 function draw() {
+  textFont(font);
   background("#407be2");
   soundOption();
   renderTitle();
