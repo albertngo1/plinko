@@ -7,9 +7,35 @@ function collision(event) {
     }
     if (((pairs.bodyA.label == 'disc' && pairs.bodyB.label == 'bottomBound') ||
     (pairs.bodyA.label == 'bottomBound' && pairs.bodyB.label == 'disc')) && cashCount == 0) {
+
       cashSound.play();
       cashCount += 1;
+
+      chances -= 1;
+      if (chances == 0) {
+        gameOver = true;
+      }
+      intermission = true;
+      discInPlay = false;
     }
+  }
+}
+
+function renderNextPlay() {
+  if (intermission && chances > 0) {
+    textSize(80);
+    fill(255, 0, 0);
+    text(`You made $${money}!`, 600, 200);
+    text(`Click anywhere`, 580, 300);
+    text(`to try again.`, 540, 400);
+  }
+}
+
+function renderNewGame() {
+  if (gameOver) {
+    text(`You cashed ${money}!`, 400, 400);
+    text(`Your score is ${score}!`, 400, 500);
+    text(`Press enter to play again.`, 400, 600);
   }
 }
 
@@ -44,6 +70,7 @@ function edgePillars(spacing) {
 }
 
 function newDisc() {
+  discInPlay = true;
   if (discs.length < 1) {
     const d = new Disc(input.x, input.y, circleRadius);
     discs.push(d);
@@ -99,27 +126,16 @@ function createPegs(spacing) {
   }
 }
 
-function keyPressed() {
-  if (keyCode == 32) {
-    newDisc();
+function keyPressed123() {
+  if (keyIsDown(13) && !game) {
+    game = true;
+  }
+  if (!intermission && !discInPlay && chances > 0) {
+    if (keyIsDown(32)) {
+      newDisc();
+    }
   }
 }
-
-function drawTitle() {
-  textSize(100);
-  textFont(font);
-  textStyle(BOLD);
-  stroke(0);
-  text("P",40, 70);
-  text("I",120, 70);
-  ellipse(121, 45, 15);
-  text("L",90, 70);
-  text("N",145, 70);
-  text("O",237, 70);
-  text("K",195, 70);
-  fill(219);
-}
-
 function mouseClicked() {
   if (((mouseX < width && mouseX > width - 30) && (mouseY > 0 && mouseY < 30)) && !mute) {
     mute = true;
@@ -127,5 +143,61 @@ function mouseClicked() {
   } else if (mute) {
     mute = false;
     backgroundSong.play();
+  }
+
+  if (intermission && !discInPlay) {
+    world.bodies.forEach( body => {
+      if (body.label === 'disc') {
+        World.remove(world, body);
+      }
+    })
+    intermission = false;
+    discs = [];
+    cashCount = 0;
+    if (gameOver) {
+      chances = 3
+      gameOver = false;
+      score = 0;
+    }
+  }
+
+}
+
+function renderTitle() {
+  textAlign(RIGHT);
+  textSize(100);
+  textFont(font);
+  textStyle(BOLD);
+  fill(255);
+  stroke(0);
+  text("P",60, 70);
+  text("I",115, 70);
+  ellipse(93, 45, 15);
+  text("L",100, 70);
+  text("N",165, 70);
+  text("O",260, 70);
+  text("K",215, 70);
+}
+
+function renderScore() {
+  noStroke();
+  textSize(50);
+  text(`$${score}`, 605, 35);
+}
+
+function renderBeginGame() {
+  textSize(60);
+  text('Welcome to Plinko!', width / 2 + 250, 300);
+  text('Press enter', width / 2 + 150, 400);
+  text('to start.', width / 2 + 125 , 500);
+}
+
+function soundOption() {
+  if (!mute) {
+    imageMode(CENTER);
+    image(unmutedSound, width-15, 15, 30, 30);
+  } else if (mute) {
+    imageMode(CENTER);
+    image(mutedSound, width-15, 15, 30, 30);
   }
 }

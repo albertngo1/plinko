@@ -12,7 +12,7 @@ class Boundary {
   }
 
   show() {
-    fill(250, 255, 244);
+    fill(240, 235, 127);
     stroke(230, 207, 59);
     push();
     const pos = this.body.position;

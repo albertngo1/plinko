@@ -17,13 +17,20 @@ let unmutedSound;
 let dingSound;
 let cashSound;
 let mute = false;
+let game = false;
 let cashCount = 0;
 let score = 0;
+
+let money = 10;
+let chances = 3;
+let intermission = false;
+let discInPlay = false;
+let gameOver = false;
 
 const rows = 14;
 const cols = 12;
 const topBuffer = 60;
-const circleRadius = 15;
+const circleRadius = 2;
 const pegRadius = 2;
 
 function preload() {
@@ -48,35 +55,39 @@ function setup() {
   createBounds();
   newPillars(spacing);
   edgePillars(spacing);
-  backgroundSong.loop();
+  // backgroundSong.loop();
 }
 
 function draw() {
   background("#407be2");
-  if (!mute) {
-    imageMode(CENTER);
-    image(unmutedSound, width-15, 15, 30, 30);
-  } else if (mute) {
-    imageMode(CENTER);
-    image(mutedSound, width-15, 15, 30, 30);
-  }
-  drawTitle();
-  keyPressed();
-  arrowMovement();
-  Engine.update(engine, 16.667);
+  soundOption();
+  renderTitle();
+  keyPressed123();
 
-  discs.forEach( (disc, idx) => {
-    disc.show();
-    if (disc.offScreen()) {
-      World.remove(world, discs[idx]);
-      discs.splice(idx, 1);
+  if (!game) {
+    renderBeginGame();
+    return;
+  } else if (game) {
+    renderScore();
+    arrowMovement();
+    Engine.update(engine, 16.667);
+
+    discs.forEach( (disc, idx) => {
+      disc.show();
+    });
+    pegs.forEach( peg => {
+      peg.show();
+    });
+    pillars.forEach( pillar => {
+      pillar.show();
+    })
+    image(input, input.x, input.y, input.width/cols, input.height/cols);
+
+    if (!gameOver) {
+      renderNextPlay();
     }
-  });
-  pegs.forEach( peg => {
-    peg.show();
-  });
-  pillars.forEach( pillar => {
-    pillar.show();
-  })
-  image(input, input.x, input.y, input.width/cols, input.height/cols);
+    if (chances == 0 && gameOver) {
+      renderNewGame();
+    }
+  }
 }
