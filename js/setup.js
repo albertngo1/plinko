@@ -72,8 +72,8 @@ function renderNewGame() {
     textAlign(CENTER);
     text(`You made $${money}.`, 330, 200);
     textAlign(RIGHT);
-    text(`Your total is $${score}!`, 510, 300);
-    text(`Click to play again.`, 450, 400);
+    text(`Your total is $${score}!`, 530, 300);
+    text(`Click to play again.`, 520, 400);
   }
 }
 
@@ -246,7 +246,7 @@ function renderChances() {
   textAlign(RIGHT);
   fill(255);
   noStroke();
-  text(`Discs Left: ${chances}`, width - 5, 55);
+  text(`Chips Left: ${chances}`, width - 5, 55);
 }
 
 function renderPointsBoard() {
