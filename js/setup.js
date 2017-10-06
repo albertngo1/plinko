@@ -11,7 +11,7 @@ function collision(event) {
       let discScoring = pairs.bodyA.label == 'disc' ? pairs.bodyA.position.x : pairs.bodyB.position.x
       if ((discScoring > 0 && discScoring < 80) ||
     (discScoring > 241 && discScoring < 285) || (discScoring > 346 && discScoring < 400) ||
-    (discScoring > 505 && discScoring < 640)) {
+    (discScoring > 560 && discScoring < 640)) {
         money = 0;
         if (!mute) {
           losingSound.play();
@@ -169,7 +169,7 @@ function keyPressed123() {
   if (keyIsDown(13) && !game) {
     game = true;
   }
-  if (!intermission && !discInPlay && chances > 0) {
+  if (!intermission && !discInPlay && chances > 0 && game) {
     if (keyIsDown(32)) {
       newDisc();
     }
@@ -179,7 +179,7 @@ function mouseClicked() {
   if (((mouseX < width && mouseX > width - 30) && (mouseY > 0 && mouseY < 30)) && !mute) {
     mute = true;
     backgroundSong.pause();
-  } else if (mute) {
+  } else if (((mouseX < width && mouseX > width - 30) && (mouseY > 0 && mouseY < 30)) &&mute) {
     mute = false;
     backgroundSong.play();
   } else {
@@ -257,25 +257,18 @@ function renderPointsBoard() {
   let y = width-100;
   let h = 90;
   fill(236, 26, 19);
-  // 0
   rect(0, y, 80, h);
   fill(34, 173, 44);
-  // 100
   rect(80, y, 50, h);
   fill(236, 26, 19);
-  // 1000
   rect(130, y, 60, h);
   fill(34, 173, 44);
-  // 500
   rect(190, y, 50, h);
   fill(236, 26, 19);
-  // 0
   rect(240, y, 55, h);
   fill(34, 173, 44);
-  // 10000
   rect(295, y, 50, h);
   fill(236, 26, 19);
-  // 0
   rect(345, y, 55, h);
   fill(34, 173, 44);
   rect(400, y, 50, h);

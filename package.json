@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.4",
-    "matter-js": "^0.13.0"
+    "matter-js": "^0.13.0",
+    "p5": "^0.5.14"
   }
 }
