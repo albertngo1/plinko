@@ -2,8 +2,6 @@
 
 [Live](https://albertngo1.github.io/plinko/)
 
-![alt text](/assets/demo/plinko.jpg)
-
 ## Background
 Plinko is a chance game based on the popular game on The Price is Right. Drop chips from the top and watch as physics and gravity determine how much money you've won.
 
@@ -18,5 +16,5 @@ I assigned each body a label and created a `collision` event so that different e
 
 ## Tech
 
-Matter.js - Physics engine
-P5 - Processing
+- Matter.js - Physics engine
+- P5 - Processing
