@@ -117,7 +117,7 @@ function newDisc() {
 }
 
 function createArrow() {
-  input = loadImage('./assets/angle-arrow-down.svg');
+  input = loadImage('assets/images/angle-arrow-down.svg');
   imageMode(CENTER);
   input.x = width/2;
   input.y = 10;
