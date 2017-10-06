@@ -6,6 +6,7 @@ class Disc {
       friction: 0,
       density: .5
     }
+    x += random(-1, 1);
     this.body = Bodies.circle(x, y, r, options);
     this.body.label = "disc";
     this.r = r;
@@ -18,7 +19,6 @@ class Disc {
     push();
     const pos = this.body.position;
     translate(pos.x, pos.y);
-    // ellipse(0, 0, this.r * 2);
     image(dollarSignImg, 0, 0, 28, 28)
     pop();
   }

@@ -21,8 +21,8 @@ let game = false;
 let cashCount = 0;
 let score = 0;
 
-let money = 10;
-let chances = 3;
+let money;
+let chances = 1;
 let intermission = false;
 let discInPlay = false;
 let gameOver = false;
@@ -55,7 +55,7 @@ function setup() {
   createBounds();
   newPillars(spacing);
   edgePillars(spacing);
-  backgroundSong.loop();
+  // backgroundSong.loop();
 }
 
 function draw() {
@@ -82,6 +82,7 @@ function draw() {
     pillars.forEach( pillar => {
       pillar.show();
     })
+    renderPointsBoard();
     image(input, input.x, input.y, input.width/cols, input.height/cols);
 
     if (!gameOver) {
@@ -90,5 +91,6 @@ function draw() {
     if (chances == 0 && gameOver) {
       renderNewGame();
     }
+    renderChances();
   }
 }

@@ -11,7 +11,8 @@ function collision(event) {
       cashSound.play();
       cashCount += 1;
 
-      chances -= 1;
+
+      //points 70 width
       if (chances == 0) {
         gameOver = true;
       }
@@ -24,8 +25,11 @@ function collision(event) {
 function renderNextPlay() {
   if (intermission && chances > 0) {
     textSize(80);
-    fill(255, 0, 0);
-    text(`You made $${money}!`, 600, 200);
+    stroke(0);
+    fill('#34d73a');
+    textAlign(CENTER);
+    text(`You made $${money}.`, 330, 200);
+    textAlign(RIGHT);
     text(`Click anywhere`, 580, 300);
     text(`to try again.`, 540, 400);
   }
@@ -33,9 +37,12 @@ function renderNextPlay() {
 
 function renderNewGame() {
   if (gameOver) {
-    text(`You cashed ${money}!`, 400, 400);
-    text(`Your score is ${score}!`, 400, 500);
-    text(`Press enter to play again.`, 400, 600);
+    fill('#34d73a');
+    textAlign(CENTER);
+    text(`You made $${money}.`, 330, 200);
+    textAlign(RIGHT);
+    text(`Your total is $${score}!`, 510, 300);
+    text(`Press enter to play again.`, 600, 400);
   }
 }
 
@@ -74,6 +81,7 @@ function newDisc() {
   if (discs.length < 1) {
     const d = new Disc(input.x, input.y, circleRadius);
     discs.push(d);
+    chances -= 1;
   }
 }
 
@@ -199,4 +207,44 @@ function soundOption() {
     imageMode(CENTER);
     image(mutedSound, width-15, 15, 30, 30);
   }
+}
+
+function renderChances() {
+  textSize(20);
+  textAlign(RIGHT);
+  fill(255);
+  text(`Discs Left: ${chances}`, width - 5, 55);
+}
+
+function renderPointsBoard() {
+  rectMode(RIGHT);
+  noStroke();
+  fill(240, 235, 127)
+  rect(0, height - 70, width, 10);
+  let y = width-100;
+  let h = 90;
+  fill(236, 26, 19);
+  rect(0, y, 80, h);
+  fill(34, 173, 44);
+  rect(80, y, 50, h);
+  fill(236, 26, 19);
+  rect(130, y, 60, h);
+  fill(34, 173, 44);
+  rect(190, y, 50, h);
+  fill(236, 26, 19);
+  rect(240, y, 55, h);
+  fill(34, 173, 44);
+  rect(295, y, 50, h);
+  fill(236, 26, 19);
+  rect(345, y, 55, h);
+  fill(34, 173, 44);
+  rect(400, y, 50, h);
+  fill(236, 26, 19);
+  rect(450, y, 55, h);
+  fill(34, 173, 44);
+  rect(505, y, 55, h);
+  fill(236, 26, 19);
+  rect(560, y, 80, h);
+
+  
 }
