@@ -8,11 +8,33 @@ function collision(event) {
     if (((pairs.bodyA.label == 'disc' && pairs.bodyB.label == 'bottomBound') ||
     (pairs.bodyA.label == 'bottomBound' && pairs.bodyB.label == 'disc')) && cashCount == 0) {
 
-      cashSound.play();
+      let discScoring = pairs.bodyA.label == 'disc' ? pairs.bodyA.position.x : pairs.bodyB.position.x
+      if ((discScoring > 0 && discScoring < 80) ||
+    (discScoring > 241 && discScoring < 285) || (discScoring > 346 && discScoring < 400) ||
+    (discScoring > 505 && discScoring < 640)) {
+        money = 0;
+        losingSound.play();
+      } else if ((discScoring > 80 && discScoring < 130) ||
+      (discScoring > 505 && discScoring < 560) ) {
+        money = 100;
+        cashSound.play();
+      } else if ((discScoring > 130 && discScoring < 190) ||
+      (discScoring > 450 && discScoring < 505)) {
+        money = 1000;
+        cashSound.play();
+      } else if ((discScoring > 400 && discScoring < 450) ||
+      (discScoring > 190 && discScoring < 240)) {
+        money = 500;
+        cashSound.play();
+      } else if ((discScoring > 295 && discScoring < 345)) {
+        money = 10000;
+        cashSound.play();
+      }
+
+
+      score += money;
       cashCount += 1;
 
-
-      //points 70 width
       if (chances == 0) {
         gameOver = true;
       }
@@ -213,6 +235,7 @@ function renderChances() {
   textSize(20);
   textAlign(RIGHT);
   fill(255);
+  noStroke();
   text(`Discs Left: ${chances}`, width - 5, 55);
 }
 
@@ -224,18 +247,25 @@ function renderPointsBoard() {
   let y = width-100;
   let h = 90;
   fill(236, 26, 19);
+  // 0
   rect(0, y, 80, h);
   fill(34, 173, 44);
+  // 100
   rect(80, y, 50, h);
   fill(236, 26, 19);
+  // 1000
   rect(130, y, 60, h);
   fill(34, 173, 44);
+  // 500
   rect(190, y, 50, h);
   fill(236, 26, 19);
+  // 0
   rect(240, y, 55, h);
   fill(34, 173, 44);
+  // 10000
   rect(295, y, 50, h);
   fill(236, 26, 19);
+  // 0
   rect(345, y, 55, h);
   fill(34, 173, 44);
   rect(400, y, 50, h);
@@ -246,5 +276,25 @@ function renderPointsBoard() {
   fill(236, 26, 19);
   rect(560, y, 80, h);
 
-  
+  fill(255);
+  stroke(0);
+  textSize(65);
+  text('0', 60, y+50);
+  text('0', 283, y+50);
+  text('0', 388, y+50);
+  text('0', 615, y+50);
+  fill(255);
+  rotate(PI/2);
+  textSize(30);
+  text('100', width-55, -95);
+  text('100', width-55, -523);
+  text('500', width-50, -205);
+  text('500', width-50, -413);
+  textSize(25);
+  text('1000', width-50, -150);
+  text('1000', width-50, -470);
+  textSize(20);
+  text('10000', width-50, -313);
+
+
 }

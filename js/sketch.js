@@ -16,13 +16,14 @@ let mutedSound;
 let unmutedSound;
 let dingSound;
 let cashSound;
+let losingSound;
 let mute = false;
 let game = false;
 let cashCount = 0;
 let score = 0;
 
 let money;
-let chances = 1;
+let chances = 3;
 let intermission = false;
 let discInPlay = false;
 let gameOver = false;
@@ -37,6 +38,7 @@ function preload() {
   backgroundSong = loadSound('assets/sounds/main-theme.mp3');
   dingSound = loadSound('assets/sounds/muted-metal-pot-hit.mp3');
   cashSound = loadSound('assets/sounds/cha-ching-register.mp3');
+  losingSound = loadSound('assets/sounds/losing-horn.mp3');
 }
 
 function setup() {
@@ -82,7 +84,6 @@ function draw() {
     pillars.forEach( pillar => {
       pillar.show();
     })
-    renderPointsBoard();
     image(input, input.x, input.y, input.width/cols, input.height/cols);
 
     if (!gameOver) {
@@ -92,5 +93,6 @@ function draw() {
       renderNewGame();
     }
     renderChances();
+    renderPointsBoard();
   }
 }
