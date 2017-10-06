@@ -1,8 +1,8 @@
 function collision(event) {
   let pairs = event.pairs[0];
-  if (!mute) {
+
     if ((pairs.bodyA.label == 'disc' && pairs.bodyB.label == 'peg') ||
-    pairs.bodyA.label == 'peg' && pairs.bodyB.label == 'disc') {
+    pairs.bodyA.label == 'peg' && pairs.bodyB.label == 'disc' && !mute) {
       dingSound.play();
     }
     if (((pairs.bodyA.label == 'disc' && pairs.bodyB.label == 'bottomBound') ||
@@ -13,22 +13,32 @@ function collision(event) {
     (discScoring > 241 && discScoring < 285) || (discScoring > 346 && discScoring < 400) ||
     (discScoring > 505 && discScoring < 640)) {
         money = 0;
-        losingSound.play();
+        if (!mute) {
+          losingSound.play();
+        }
       } else if ((discScoring > 80 && discScoring < 130) ||
       (discScoring > 505 && discScoring < 560) ) {
         money = 100;
-        cashSound.play();
+        if (!mute) {
+          cashSound.play();
+        }
       } else if ((discScoring > 130 && discScoring < 190) ||
       (discScoring > 450 && discScoring < 505)) {
         money = 1000;
-        cashSound.play();
+        if (!mute) {
+          cashSound.play();
+        }
       } else if ((discScoring > 400 && discScoring < 450) ||
       (discScoring > 190 && discScoring < 240)) {
         money = 500;
-        cashSound.play();
+        if (!mute) {
+          cashSound.play();
+        }
       } else if ((discScoring > 295 && discScoring < 345)) {
         money = 10000;
-        cashSound.play();
+        if (!mute) {
+          cashSound.play();
+        }
       }
 
 
@@ -41,7 +51,6 @@ function collision(event) {
       intermission = true;
       discInPlay = false;
     }
-  }
 }
 
 function renderNextPlay() {
@@ -64,7 +73,7 @@ function renderNewGame() {
     text(`You made $${money}.`, 330, 200);
     textAlign(RIGHT);
     text(`Your total is $${score}!`, 510, 300);
-    text(`Press enter to play again.`, 600, 400);
+    text(`Click to play again.`, 450, 400);
   }
 }
 
@@ -173,23 +182,24 @@ function mouseClicked() {
   } else if (mute) {
     mute = false;
     backgroundSong.play();
-  }
-
-  if (intermission && !discInPlay) {
-    world.bodies.forEach( body => {
-      if (body.label === 'disc') {
-        World.remove(world, body);
+  } else {
+    if (intermission && !discInPlay) {
+      world.bodies.forEach( body => {
+        if (body.label === 'disc') {
+          World.remove(world, body);
+        }
+      })
+      intermission = false;
+      discs = [];
+      cashCount = 0;
+      if (gameOver) {
+        chances = 3
+        gameOver = false;
+        score = 0;
       }
-    })
-    intermission = false;
-    discs = [];
-    cashCount = 0;
-    if (gameOver) {
-      chances = 3
-      gameOver = false;
-      score = 0;
     }
   }
+
 
 }
 

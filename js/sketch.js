@@ -57,7 +57,7 @@ function setup() {
   createBounds();
   newPillars(spacing);
   edgePillars(spacing);
-  // backgroundSong.loop();
+  backgroundSong.loop();
 }
 
 function draw() {
