@@ -3,6 +3,7 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Events = Matter.Events;
 
+let highScores = [];
 let engine;
 let world;
 let font;
@@ -12,6 +13,7 @@ let pillars = [];
 let input;
 let backgroundSong;
 let dollarSignImg;
+let highScoreList;
 let mutedSound;
 let unmutedSound;
 let dingSound;
@@ -23,10 +25,12 @@ let cashCount = 0;
 let score = 0;
 
 let money;
-let chances = 3;
+let chances = 1;
 let intermission = false;
 let discInPlay = false;
 let gameOver = false;
+
+let database = window.firebase.database();
 
 const rows = 14;
 const cols = 12;
@@ -66,6 +70,8 @@ function draw() {
   soundOption();
   renderTitle();
   keyPressed123();
+  database.ref().on("value", function(snapshot) {
+      highScores = snapshot.val();});
 
   if (!game) {
     renderBeginGame();
@@ -91,6 +97,8 @@ function draw() {
     }
     if (chances == 0 && gameOver) {
       renderNewGame();
+      highScoreList = getHighScores(highScores);
+      renderHighScores();
     }
     renderChances();
     renderPointsBoard();

@@ -21,6 +21,7 @@
           the cursor.
         </div>
       </div>
+      <ul class="highscores"></ul>
      <ul class="fa-ul footer-ul">
        <li class="footer-li">
          <a href="http://ngoalbert.com" target=_blank>
@@ -47,8 +48,23 @@
     </div>
   </body>
 
+  <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDjVrYbAsmEu6qCj8FnGwmHePvGnpzj6F0",
+    authDomain: "plinko-ae6f9.firebaseapp.com",
+    databaseURL: "https://plinko-ae6f9.firebaseio.com",
+    projectId: "plinko-ae6f9",
+    storageBucket: "plinko-ae6f9.appspot.com",
+    messagingSenderId: "72758489531"
+  };
+  firebase.initializeApp(config);
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="./assets/lib/p5/p5.min.js"></script>
   <script type="text/javascript" src="./assets/lib/matter.js"></script>
+  <script type="text/javascript" src="./assets/lib/lodash.js"></script>
   <script type="text/javascript" src="./assets/lib/p5/addons/p5.dom.min.js"></script>
   <script type="text/javascript" src="./assets/lib/p5/addons/p5.sound.min.js"></script>
   <script type="text/javascript" src="./js/sketch.js"></script>
@@ -56,4 +72,5 @@
   <script type="text/javascript" src="./js/peg.js"></script>
   <script type="text/javascript" src="./js/boundary.js"></script>
   <script type="text/javascript" src="./js/setup.js"></script>
+
 </html>

@@ -32,3 +32,23 @@ body {
   text-decoration: none;
   color: white;
 }
+.highscores {
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.highscores-title {
+  font-size: 25px;
+}
+
+.highscore-list-item {
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  user-select: none;
+  cursor: default;
+  list-style: none;
+}

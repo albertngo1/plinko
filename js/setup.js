@@ -193,8 +193,11 @@ function mouseClicked() {
       discs = [];
       cashCount = 0;
       if (gameOver) {
-        chances = 3
+        chances = 1;
         gameOver = false;
+        database.ref().push({
+          score: score
+        });
         score = 0;
       }
     }
@@ -229,6 +232,28 @@ function renderBeginGame() {
   text('Welcome to Plinko!', width / 2 + 250, 300);
   text('Press enter', width / 2 + 150, 400);
   text('to start.', width / 2 + 125 , 500);
+}
+
+function getHighScores(highScores) {
+    Object.keys(highScores).map(el => highScores[el])
+    highScores = _.orderBy(highScores, ['score'], ['desc'] )
+    return highScores.slice(0, 4);
+}
+
+function renderHighScores() {
+    $('.highscores').empty();
+    $('.highscores').append(
+      `<div class='highscores-title'>High Scores</div>`
+    );
+    highScoreList.forEach( (el, idx) => {
+      $('.highscores').append(
+        `<li class='highscore-list-item'>
+        <div>
+        ${idx + 1}. $${el.score}
+        </div>
+        </li>`
+      );
+    });
 }
 
 function soundOption() {
