@@ -193,7 +193,7 @@ function mouseClicked() {
       discs = [];
       cashCount = 0;
       if (gameOver) {
-        chances = 1;
+        chances = 3;
         gameOver = false;
         database.ref().push({
           score: score

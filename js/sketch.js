@@ -25,7 +25,7 @@ let cashCount = 0;
 let score = 0;
 
 let money;
-let chances = 1;
+let chances = 3;
 let intermission = false;
 let discInPlay = false;
 let gameOver = false;
