@@ -29,26 +29,39 @@ body {
 }
 
 .footer-li {
-  text-decoration: none;
+  text-decoration: none !important;
   color: white;
 }
 .highscores {
-  height: 160px;
+  height: 220px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  align-self: center;
+  margin-right: 30px;
+  height: auto;
 }
 .highscores-title {
   font-size: 25px;
+  display: flex;
+  justify-content: center;
 }
 
 .highscore-list-item {
   font-size: 15px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
   user-select: none;
   cursor: default;
   list-style: none;
+}
+
+.my-name {
+  margin-left: 10px;
+}
+
+.footer-wrap:hover {
+  background-color: #4182f5;
+  border-radius: 3px;
 }

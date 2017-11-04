@@ -34,3 +34,4 @@ I assigned each body a label and created a `collision` event so that different e
 
 - Matter.js - Physics engine
 - P5 - Processing
+- Firebase - Database to store high scores

@@ -47,6 +47,9 @@ function collision(event) {
 
       if (chances == 0) {
         gameOver = true;
+        database.ref().push({
+          score: score
+        });
       }
       intermission = true;
       discInPlay = false;
@@ -195,9 +198,6 @@ function mouseClicked() {
       if (gameOver) {
         chances = 3;
         gameOver = false;
-        database.ref().push({
-          score: score
-        });
         score = 0;
       }
     }

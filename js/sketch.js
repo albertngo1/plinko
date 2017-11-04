@@ -57,6 +57,12 @@ function setup() {
   world = engine.world;
 
   Events.on(engine, 'collisionStart', collision)
+
+  database.ref().on("value", function(snapshot) {
+      highScores = snapshot.val();});
+      database.ref().push({
+        score: 0
+      });
   createPegs(spacing);
   createBounds();
   newPillars(spacing);
@@ -70,8 +76,6 @@ function draw() {
   soundOption();
   renderTitle();
   keyPressed123();
-  database.ref().on("value", function(snapshot) {
-      highScores = snapshot.val();});
 
   if (!game) {
     renderBeginGame();
@@ -97,9 +101,9 @@ function draw() {
     }
     if (chances == 0 && gameOver) {
       renderNewGame();
-      highScoreList = getHighScores(highScores);
-      renderHighScores();
     }
+    highScoreList = getHighScores(highScores);
+    renderHighScores();
     renderChances();
     renderPointsBoard();
   }
